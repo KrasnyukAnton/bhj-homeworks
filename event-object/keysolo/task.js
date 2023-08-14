@@ -16,16 +16,26 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
-  registerEvents() {
+    registerEvents() {
+    document.addEventListener('keyup', (event) => {
+      let symbol = event.key;
+
+      if(this.currentSymbol.textContent.toLowerCase() == symbol.toLowerCase()){
+        this.success();
+      } else {
+        this.fail();
+      }
+    })
+   
     /*
       TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-      DOM-элемент текущего символа находится в свойстве this.currentSymbol.
+      Добавьте таймер обратного отсчёта в код
+      сделайте возможным работу как с русскими, английскими, 
+      так и смешанными фразами (например, «я люблю kitkat»). (utf-16)
+      Методы String.fromCharCode(), String.charCodeAt()
      */
   }
+
 
   success() {
     if(this.currentSymbol.classList.contains("symbol_current")) this.currentSymbol.classList.remove("symbol_current");
@@ -91,4 +101,3 @@ class Game {
 }
 
 new Game(document.getElementById('game'))
-
